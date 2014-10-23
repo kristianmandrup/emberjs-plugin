@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templateSet group="EmberJS">
+    <template name="emre" value="this.resource('$resource$', function() {&#10;$END$&#10;})" description="A resource route" toReformat="false" toShortenFQNames="true">
+        <variable name="resource" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emrep" value="this.resource('$resource$', {$CONTENT2$}, function() {&#10;$END$&#10;})" description="A resource route with params" toReformat="false" toShortenFQNames="true">
+        <variable name="resource" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emro" value="this.route('$route$')" description="A route" toReformat="true" toShortenFQNames="true">
+        <variable name="route" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emac" value="actions: {&#10;    $END$&#10;}" description="Actions" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="empr" value="$property$: function() {&#10;    var $propName$ = this.get('$name$');&#10;    $END$&#10;}.property('$propName$')" description="A property" toReformat="true" toShortenFQNames="true">
+        <variable name="property" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emtr" value="this.transitionTo('$route$', $END$&#10;);" description="Transition to a route" toReformat="true" toShortenFQNames="true">
+        <variable name="route" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="tg" value="this.get('$propName$')" description="get property value" toReformat="true" toShortenFQNames="true">
+        <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+        </context>
+    </template>
+
+  <template name="ts" value="this.set('$propName$', $END$&#10;);" description="set property value" toReformat="true" toShortenFQNames="true">
+      <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+      <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+      </context>
+  </template>
+    <template name="emca" value="$alias$: Ember.computed.alias($propName$),&#10;" description="Computed property alias" toReformat="true" toShortenFQNames="true">
+        <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="alias" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+        </context>
+    </template>
+    <template name="emsf" value="store.find('$resource$', $END$)" description="Find resource in store" toReformat="true" toShortenFQNames="true">
+        <variable name="resource" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+        </context>
+    </template>
+    <template name="dsa" value="DS.attr('$name$')" description="DataStore attribute" toReformat="true" toShortenFQNames="true">
+        <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+        </context>
+    </template>
+    <template name="dsbt" value="DS.belongsTo('$name$'),&#10;" description="DataStore belongsTo relationship" toReformat="true" toShortenFQNames="true">
+        <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+        </context>
+    </template>
+    <template name="dshm" value="DS.hasMany('$name$'),&#10;" description="DataStore hasMany relationship" toReformat="true" toShortenFQNames="true">
+        <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+        </context>
+    </template>
+    <template name="eoc" value="Ember.Object.create({&#10;    init: function() {&#10;    $END$&#10;}    &#10;});" description="Create Ember Object" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+        </context>
+    </template>
+    <template name="eap" value="Ember.ArrayProxy.create({&#10; content: $END$&#10;});" description="Create Ember Array Proxy" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="ema" value="Ember.MutableArray.create({&#10; $END$&#10;});" description="Create Ember Mutable Array" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emen" value="Ember.Enumerable.create({&#10; $END$&#10;});" description="Create Ember Enumerable" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emns" value="Ember.Namespace.create{&#10;  $END$&#10;});" description="A factory in a module" toReformat="true" toShortenFQNames="true">
+        <variable name="factoryName" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="dependencies" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+        </context>
+    </template>
+</templateSet>

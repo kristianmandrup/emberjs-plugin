@@ -1,0 +1,48 @@
+<idea-plugin version="2" url="http://github.com/kristianmandrup/emberjs-plugin">
+    <name>EmberJS</name>
+    <description>Support for EmberJS</description>
+    <version>0.1.9</version>
+    <vendor url="http://infomatrix-blog.heroku.com" email="kmandrup@gmail.com">kmandrup</vendor>
+    <change-notes><![CDATA[
+        <html>
+        <dl>
+            <dt>0.1</dt>
+            <dd>Basic stuff</dd>
+        </dl>
+        </html>
+        ]]>
+    </change-notes>
+
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="139.164"/>
+
+    <depends>JavaScript</depends>
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <action id="GotoEmberAction"
+                class="org.emberjs.GotoEmberAction"
+                text="Go to Ember"
+                description="Navigate to Ember code">
+            <keyboard-shortcut keymap="$default"
+                               first-keystroke="ctrl l"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl l"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="ctrl l"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <defaultLiveTemplatesProvider implementation="org.emberjs.EmberJSTemplatesProvider"/>
+
+        <applicationService serviceInterface="org.emberjs.settings.EmberJSConfig"
+                            serviceImplementation="org.emberjs.settings.EmberJSConfig"/>
+
+
+        <fileBasedIndex implementation="com.intellij.lang.javascript.index.EmberJSIndex"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="JavaScript">
+        <frameworkIndexingHandler implementation="org.emberjs.index.EmberJSIndexingHandler" />
+    </extensions>
+</idea-plugin>
