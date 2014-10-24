@@ -1,6 +1,43 @@
-## EmberJS IntelliJ plugin
+# EmberJS IntelliJ plugin
 
 EmberJS Support for the Intellij Platform (WebStorm, PhpStorm, Rubymine, Intellij, etc)
+
+## Contributing
+
+See [plugin-in-30-minutes](http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes)
+
+### Step 1: Download and install Community Edition of IntelliJ IDEA
+
+_download and install_ the *Community version of IntelliJ IDEA* if you don’t already have it.
+
+### Step 2: Do a shallow git clone of the Community Edition source code
+
+`git clone --depth 1 https://github.com/JetBrains/intellij-community.git`
+
+### Step 3: Create a project and set up your project structure.
+
+- Fire up IntelliJ Community Edition.
+- Create a new project called *EmberJS*.
+- Get a Java JDK. Java 1.6 recommended.
+
+Once you have downloaded a Java JDK, you’ll need to create an SDK for this in IntelliJ IDEA
+In the project structure dialog that appears after you create a new project,
+create a new SDK for the version of Java you downloaded.
+
+Setup a Plugin SDK by clicking the *“new” button* next to the _Project SDK_.
+
+It will prompt you to locate the Comunity Edition that you installed.
+It requires the path to the Community Edition of IntelliJ that you installed in the first step.
+
+On a Mac the path for this is:
+
+`/Applications/IntelliJ IDEA 13 CE.app`
+
+On Windows the path was:
+
+`C:\\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 13.0.1`
+
+...
 
 ### Development links
 
