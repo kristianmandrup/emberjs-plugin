@@ -39,6 +39,10 @@ On Windows the path was:
 
 ...
 
+### TODO list
+
+Add Live Templates for CoffeeScript, LiveScript and EmberScript.
+
 ### Development links
 
 Some useful links to get a better understanding of Plugin development for the IDEA platform
