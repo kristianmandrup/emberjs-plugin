@@ -24,7 +24,7 @@ public class EmberItem {
         return element;
     }
 
-    AngularItem(String key, String itemName, Usage usage, PsiElement element, String itemType) {
+    EmberItem(String key, String itemName, Usage usage, PsiElement element, String itemType) {
         this.key = key;
         this.itemName = itemName;
         this.usage = usage;

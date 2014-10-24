@@ -68,64 +68,63 @@ public class GotoEmberAction extends GotoActionBase {
     // Find anything which matches a pattern like:
     // CommentsRoute = Ember.Route.create({...})
     // The name such as CommentsRoute will be in the first matching group $1
-    private void findEmberClass(findModel, String thing) {
-
+    private String findEmberClass(String thing) {
       return "(\\S+)" + capitalize(thing) + "\\s*=\\s*Ember\\." + thing + "\\.(create|extend)";
     }
 
-    private void findModuleFor(findModel, String thing) {
+    private String findModuleFor(String thing) {
       return "moduleFor\\('" + thing + ":(\\S+)";
     }
 
-    private void findModuleForComponent(findModel) {
+    private String findModuleForComponent() {
       return "moduleForComponent\\('(\\S+)";
     }
 
-    private void findModuleForModel(findModel) {
+    private String findModuleForModel() {
       return "moduleForModel\\('(\\S+)";
     }
 
-    private FindModel findReplaceEmberClass(findModel, String thing) {
+    private FindModel findReplaceEmberClass(FindModel findModel, String thing) {
       findModel.setStringToFind(findEmberClass(thing));
       findModel.setStringToReplace("$1");
       return findModel;
     }
 
-    private FindModel findReplaceModuleFor(findModel, String thing) {
+    private FindModel findReplaceModuleFor(FindModel findModel, String thing) {
       findModel.setStringToFind(findModuleFor(thing));
       findModel.setStringToReplace("$1");
       return findModel;
     }
 
-    private FindModel findReplaceModuleForComponent(findModel, String thing) {
-      findModel.setStringToFind(findModuleForComponent(thing));
+    private FindModel findReplaceModuleForComponent(FindModel findModel) {
+      findModel.setStringToFind(findModuleForComponent());
       findModel.setStringToReplace("$1");
       return findModel;
     }
 
-    private FindModel findReplaceModuleForModel(findModel, String thing) {
-      findModel.setStringToFind(findModuleForModel(thing));
+    private FindModel findReplaceModuleForModel(FindModel findModel) {
+      findModel.setStringToFind(findModuleForModel());
       findModel.setStringToReplace("$1");
       return findModel;
     }
 
-    private void findResultsForEmberClass(validResults, findModel, typeName, typeId) {
-      addResultsFor(findReplaceEmberClass(findModel, typeName), typeId);
+    private void findResultsForEmberClass(Project project, DataContext dataContext, List<EmberItem> validResults, FindModel findModel, String typeName, int typeId) {
+      addResultsFor(project, dataContext, validResults, findReplaceEmberClass(findModel, typeName), typeId);
     }
 
-    private void findResultsModuleFor(validResults, findModel, typeName, typeId) {
-      addResultsFor(findReplaceModuleFor(findModel, typeName), typeId);
+    private void findResultsModuleFor(Project project, DataContext dataContext, List<EmberItem> validResults, FindModel findModel, String typeName, int typeId) {
+      addResultsFor(project, dataContext, validResults, findReplaceModuleFor(findModel, typeName), typeId);
     }
 
-    private void findResultsModuleForComponent(validResults, findModel, typeName, typeId) {
-      addResultsFor(findReplaceModuleForComponent(findModel, typeName), typeId);
+    private void findResultsModuleForComponent(Project project, DataContext dataContext, List<EmberItem> validResults, FindModel findModel, int typeId) {
+      addResultsFor(project, dataContext, validResults, findReplaceModuleForComponent(findModel), typeId);
     }
 
-    private void findResultsModuleForModel(validResults, findModel, typeName, typeId) {
-      addResultsFor(findReplaceModuleForModel(findModel, typeName), typeId);
+    private void findResultsModuleForModel(Project project, DataContext dataContext, List<EmberItem> validResults, FindModel findModel, int typeId) {
+      addResultsFor(project, dataContext, validResults, findReplaceModuleForModel(findModel), typeId);
     }
 
-    private void addResultsFor(findModel, typeId) {
+    private void addResultsFor(Project project, DataContext dataContext, List<EmberItem> validResults, FindModel findModel, int typeId) {
       final Collection<Usage> usages = getEmberUsages(project, dataContext, findModel);
       List<EmberItem> usageResults = getValidResults(project, findModel, usages, typeId);
       validResults.addAll(usageResults);
@@ -151,12 +150,12 @@ public class GotoEmberAction extends GotoActionBase {
         findModel.setFileFilter("*.js");
 
         // TODO: Refactor this! Use some kind of Map instead and do iteration
-        findResultsForEmberClass(validResults, findModel, "Component", COMPONENT);
-        findResultsForEmberClass(validResults, findModel, "Controller", CONTROLLER);
-        findResultsForEmberClass(validResults, findModel, "Route", ROUTE);
-        findResultsForEmberClass(validResults, findModel, "Model", MODEL);
-        findResultsForEmberClass(validResults, findModel, "View", VIEW);
-        findResultsForEmberClass(validResults, findModel, "Mixin", MIXIN);
+        findResultsForEmberClass(project, dataContext, validResults, findModel, "Component", COMPONENT);
+        findResultsForEmberClass(project, dataContext, validResults, findModel, "Controller", CONTROLLER);
+        findResultsForEmberClass(project, dataContext, validResults, findModel, "Route", ROUTE);
+        findResultsForEmberClass(project, dataContext, validResults, findModel, "Model", MODEL);
+        findResultsForEmberClass(project, dataContext,validResults, findModel, "View", VIEW);
+        findResultsForEmberClass(project, dataContext,validResults, findModel, "Mixin", MIXIN);
 
         // Unit Testing
         // http://emberjs.com/guides/testing/unit-test-helpers/
@@ -165,17 +164,17 @@ public class GotoEmberAction extends GotoActionBase {
         // moduleFor('controller:posts',
         // TODO: Refactor this! Use some kind of Map instead and do iteration
         // TODO: Perhaps refactor typeId to be TEST_COMPONENT etc.
-        findResultsModuleFor(validResults, findModel, "component", COMPONENT);
-        findResultsModuleFor(validResults, findModel, "controller", CONTROLLER);
-        findResultsModuleFor(validResults, findModel, "route", ROUTE);
-        findResultsModuleFor(validResults, findModel, "model", MODEL);
-        findResultsModuleFor(validResults, findModel, "view", VIEW);
-        findResultsModuleFor(validResults, findModel, "mixin", MIXIN);
+        findResultsModuleFor(project, dataContext, validResults, findModel, "component", COMPONENT);
+        findResultsModuleFor(project, dataContext, validResults, findModel, "controller", CONTROLLER);
+        findResultsModuleFor(project, dataContext, validResults, findModel, "route", ROUTE);
+        findResultsModuleFor(project, dataContext, validResults, findModel, "model", MODEL);
+        findResultsModuleFor(project, dataContext, validResults, findModel, "view", VIEW);
+        findResultsModuleFor(project, dataContext, validResults, findModel, "mixin", MIXIN);
 
         // moduleForComponent(name,
-        findResultsModuleForComponent(validResults, findModel, COMPONENT);
+        findResultsModuleForComponent(project, dataContext, validResults, findModel, COMPONENT);
         // moduleForModel(name
-        findResultsModuleForModel(validResults, findModel, MODEL);
+        findResultsModuleForModel(project, dataContext, validResults, findModel, MODEL);
 
         final GotoEmberModel model = new GotoEmberModel(project, validResults);
         showNavigationPopup(e, model, new GotoEmberBase.GotoActionCallback<Object>() {

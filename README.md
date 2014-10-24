@@ -166,34 +166,53 @@ javascript plugin development!
 
 _download and install_ the *Community version of IntelliJ IDEA* if you don’t already have it.
 
+This is perhaps (still?) useful after your Ultimate edition trial expires?
+
 ### Step 2: Do a shallow git clone of the Community Edition source code
 
 `git clone --depth 1 https://github.com/JetBrains/intellij-community.git`
 
 ### Step 3: Create a project and set up your project structure.
 
-- Fire up IntelliJ Community Edition.
-- Create a new project called *EmberJS*.
+- Fire up IntelliJ Ultimate Edition.
+- Create project from existing source
 - Get a Java JDK. Java 1.6 recommended.
+- Configure the Javas SDK via Project Structure
 
 Once you have downloaded a Java JDK, you’ll need to create an SDK for this in IntelliJ IDEA
 In the project structure dialog that appears after you create a new project,
 create a new SDK for the version of Java you downloaded.
 
-Setup a Plugin SDK by clicking the *“new” button* next to the _Project SDK_.
+Setup a Plugin SDK by clicking the *“new” button* next to the Project SDK.
 
-It will prompt you to locate the Comunity Edition that you installed.
-It requires the path to the Community Edition of IntelliJ that you installed in the first step.
+It will prompt you to locate the IntelliJ that you installed.
 
 On a Mac the path for this is:
 
-`/Applications/IntelliJ IDEA 13 CE.app`
+`/Applications/IntelliJ IDEA 13.app`
 
-On Windows the path was:
+It should display the `Content` folder, just click "next".
 
-`C:\\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 13.0.1`
+On Windows the path is something like:
 
-...
+`C:\\Program Files (x86)\JetBrains\IntelliJ IDEA Ultimate Edition 13.0.1`
+
+Now if configured correctly, (also make sure to enable the Javascript plugin), it should
+do code inspection and highlight any errors in red etc.
+
+Create a new *Run configuration*, using "+", and select "Plugin", then click "next".
+
+Now run "Debug EmberJS". Create or select a dummy ember-cli project and test the plugin features there :)
+
+*Reference plugin*
+
+https://github.com/JetBrains/intellij-plugins/tree/master/AngularJS
+
+The *AngularJS plugin* will be our main reference, as it contains the most features required by a
+full JS multilayered MV* framework like *EmberJS*.
+
+IF you want, you can try doing a [sparse-checkout](http://jasonkarns.com/blog/subdirectory-checkouts-with-git-sparse-checkout/)
+of only this plugin directory...
 
 
 ### Development links
@@ -209,9 +228,6 @@ http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes
 IntelliJ IDEA Plugin development Tutorial videos
 https://www.youtube.com/watch?v=S1u8uVjPjvc&list=PLQ176FUIyIUYi8c0HCxlV8c9cINmBbBky
 
-Plugin Tutorials with IntelliJ IDEA, Episode 1: Creating our first plugin
-https://www.youtube.com/watch?v=55omE_2R1-A
-
 Live Coding an IntelliJ IDEA Plugin from Scratch
 https://www.youtube.com/watch?v=-ZmQD6Fr6KE
 
@@ -220,6 +236,9 @@ https://www.youtube.com/watch?v=S1u8uVjPjvc&list=PLQ176FUIyIUYi8c0HCxlV8c9cINmBb
 
 AngularJS plugin (which is main inspiration for this plugin)
 https://github.com/denofevil/angularjs-plugin
+
+Most Recent (and complete) AngularJS plugin
+https://github.com/JetBrains/intellij-plugins/tree/master/AngularJS
 
 IntelliJ IDEA API
 http://grepcode.com/snapshot/repository.grepcode.com/java/ext/com.jetbrains/intellij-idea/13.0.0/
@@ -270,6 +289,7 @@ Some candidates to look at:
 - [CommonJSAutoComplete](https://github.com/jballant/CommonJSAutoComplete)
 - [jsToolbox](https://github.com/andresdominguez/jsToolbox)
 - [JSIntentionPowerPack](https://plugins.jetbrains.com/plugin/264?pr=)
+- [ScaffAngular](https://github.com/suparngp/angular-iunit)
 - ...
 
 Also clone and look at these [intellij-plugins](https://github.com/JetBrains/intellij-plugins)
