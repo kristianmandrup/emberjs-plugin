@@ -138,16 +138,29 @@ BrowserUtil.open(name.toString());
 - New Project creator using *Ember-CLI*
 - Browse Ember CLI addons/libraries per category (listed per rating) and install auto-magically!!
 
-- Code insights
-  - referencing unknown module via `moduleFor`
-  - Warning if `this.get` or `this.set` references undeclared property
-  - Understanding `.extend` and `Mixins` are part of class hierarchy (class scope)
++Code insights+
+
+- referencing unknown module via `moduleFor`
+- Warning if `this.get` or `this.set` references undeclared property
+- Understanding `.extend` and `Mixins` are part of class hierarchy (class scope)
+
++Project configuration+
+- Ignore folders: `bower_components`, `node_modules`, `tmp`, `dist`
 
 Please add your own suggestions ;)
 
 ## Contributing
 
 See [plugin-in-30-minutes](http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes)
+
+### Step 0: Download and install Ultimate Edition (trial 30 days) of IntelliJ IDEA
+
+https://www.jetbrains.com/idea/download
+
+Sadly only the Ultimate Edition has the `javascript.jar` plugin which is needed as a building block for any
+javascript plugin development!
+
+[com.intellij.lang.javascript](http://devnet.jetbrains.com/message/5526006#5526006)
 
 ### Step 1: Download and install Community Edition of IntelliJ IDEA
 
@@ -182,9 +195,6 @@ On Windows the path was:
 
 ...
 
-### TODO list
-
-Add Live Templates for CoffeeScript, LiveScript and EmberScript.
 
 ### Development links
 
@@ -196,8 +206,17 @@ http://tomaszdziurko.pl/2011/09/developing-plugin-intellij-idea-some-tips-and-li
 How to make an IntelliJ IDEA plugin in less than 30 minutes
 http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes
 
+IntelliJ IDEA Plugin development Tutorial videos
+https://www.youtube.com/watch?v=S1u8uVjPjvc&list=PLQ176FUIyIUYi8c0HCxlV8c9cINmBbBky
+
+Plugin Tutorials with IntelliJ IDEA, Episode 1: Creating our first plugin
+https://www.youtube.com/watch?v=55omE_2R1-A
+
 Live Coding an IntelliJ IDEA Plugin from Scratch
 https://www.youtube.com/watch?v=-ZmQD6Fr6KE
+
+Webinar Recording: How to Build Developer Tools on Top of IntelliJ Platform
+https://www.youtube.com/watch?v=S1u8uVjPjvc&list=PLQ176FUIyIUYi8c0HCxlV8c9cINmBbBky&index=3
 
 AngularJS plugin (which is main inspiration for this plugin)
 https://github.com/denofevil/angularjs-plugin
@@ -241,6 +260,19 @@ https://confluence.jetbrains.com/display/IDEADEV/Developing+Custom+Language+Plug
 
 Code assistance
 https://www.jetbrains.com/idea/features/code_assistance.html
+
+## Existing Javascript plugins for inspiration
+
+[List of Javascript plugins](https://plugins.jetbrains.com/category/index?pr=&category_id=50)
+
+Some candidates to look at:
+
+- [CommonJSAutoComplete](https://github.com/jballant/CommonJSAutoComplete)
+- [jsToolbox](https://github.com/andresdominguez/jsToolbox)
+- [JSIntentionPowerPack](https://plugins.jetbrains.com/plugin/264?pr=)
+- ...
+
+Also clone and look at these [intellij-plugins](https://github.com/JetBrains/intellij-plugins)
 
 ## Installing the EmberJS plugin for Webstorm
 
