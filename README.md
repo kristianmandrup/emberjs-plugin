@@ -2,6 +2,149 @@
 
 EmberJS Support for the Intellij Platform (WebStorm, PhpStorm, Rubymine, Intellij, etc)
 
+## Current features (0.1)
+
+- Navigate to Ember code
+- Live Templates (js, ls, coffee)
+- JS Docs lookup
+
+### Navigate to Ember code
+
+via `ctrl l`
+
+`<some-variable> = Ember.Route.create({`
+
+Looking for `posts` will match on:
+
+`PostsRoute = Ember.Route.create({`
+
+Using match rule on first group `$1`, ie. `(Posts)`
+
+`(Posts)Route = Ember.Route.create({`
+
+And so on for:
+
+- Component
+- Controller
+- Route
+- Model
+- View
+- Mixin
+
+*Tests*
+
+`moduleFor('<ember-artifact-type>:<name>',`
+
+Looking for `post` will match on:
+
+`moduleFor('controller:post',`
+
+`moduleForModel('post',`
+
+And when looking for `bling`
+
+`moduleForComponent('bling-it',`
+
+*Limitations*
+
+- Currently only supports single quotes `'`
+- No distinction between real artifacts (Model) and moduleFor used for Test.
+
+See `TODO` comments in the code for `GotoEmberAction.java` and help improve it :)
+
+### Live Templates
+
+- javascript
+- coffeescript
+- emberscript
+
+This is configured via `EmberJSTemplatesProvider.java`
+
+```java
+@Override
+public String[] getDefaultLiveTemplateFiles() {
+    return new String[] {
+        "liveTemplates/EmberJS",
+        "liveTemplates/EmberJS-CoffeeScript",
+        "liveTemplates/EmberJS-EmberScript"
+    };
+}
+```
+
+For `liveTemplates/EmberJS-CoffeeScript`
+
+```xml
+  <option name="COFFEE_SCRIPT" value="true" />
+  <option name="LIVE_SCRIPT" value="true" />
+```
+
+*Routing*
+
+- "emre": resource route
+- "emrep": resource route with params
+- "emro": route
+
+*General*
+
+- "emsf": store find
+- "emac": actions scope
+- "empr": property
+- "emtr": transitionTo
+- ".g": get property
+- ".s": set property
+- "emca": computed alias
+
+*DataStore - Ember Data*
+
+- "dsa": DS attribute
+- "dsbt": DS belongsTo
+- "dshm": DS hasMany
+
+*Ember classes*
+
+- "emoc": Ember.Object.create
+- "emap": Ember.ArrayProxy.create
+- "emma": Ember.MutableArray.create
+- "emen": Ember.Enumerable.create
+- "emns": Ember.Namespace.create
+
+*Emberscript specific templates*
+
+- "com": Computed property
+- "obs": Observed property
+- "vol": Volatile property
+- "emoc": Object Create (via `class`)
+- "emmi": Mixin Create (via `mixin`)
+
+To use [emberscript](http://emberscript.com/), you need to configure your IDE to use the @kristianmandrup
+ES6 compatible fork of [emberscript](https://github.com/kristianmandrup/ember-script), which enables
+*multi-script* compilation (multiple languages in the same file!!)
+
+This resolves issue [#44](https://github.com/ghempton/ember-script/issues/44)
+
+### JS Docs intention
+
+See `OpenEmberJSDocsIntention.java`
+
+Will get the classname at the caret position and lookup JS documentation from Ember API:
+
+```java
+StringBuilder name = new StringBuilder("http://emberjs.com/api/classes/Ember." + clazz);
+BrowserUtil.open(name.toString());
+```
+
+### Planned features
+
+- New Project creator using *Ember-CLI*
+- Browse Ember CLI addons/libraries per category (listed per rating) and install auto-magically!!
+
+- Code insights
+  - referencing unknown module via `moduleFor`
+  - Warning if `this.get` or `this.set` references undeclared property
+  - Understanding `.extend` and `Mixins` are part of class hierarchy (class scope)
+
+Please add your own suggestions ;)
+
 ## Contributing
 
 See [plugin-in-30-minutes](http://bjorn.tipling.com/how-to-make-an-intellij-idea-plugin-in-30-minutes)

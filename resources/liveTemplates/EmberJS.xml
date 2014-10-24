@@ -102,7 +102,7 @@
             <option name="CSS_RULESET_LIST" value="false" />
         </context>
     </template>
-    <template name="tg" value="this.get('$propName$')" description="get property value" toReformat="true" toShortenFQNames="true">
+    <template name=".g" value="this.get('$propName$')" description="get property value" toReformat="true" toShortenFQNames="true">
         <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
         <context>
             <option name="HTML_TEXT" value="false" />
@@ -120,7 +120,7 @@
         </context>
     </template>
 
-  <template name="ts" value="this.set('$propName$', $END$&#10;);" description="set property value" toReformat="true" toShortenFQNames="true">
+  <template name=".s" value="this.set('$propName$', $END$&#10;);" description="set property value" toReformat="true" toShortenFQNames="true">
       <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
       <context>
           <option name="HTML_TEXT" value="false" />
@@ -137,7 +137,7 @@
           <option name="OTHER" value="false" />
       </context>
   </template>
-    <template name="emca" value="$alias$: Ember.computed.alias($propName$),&#10;" description="Computed property alias" toReformat="true" toShortenFQNames="true">
+    <template name="emca" value="$alias$: Ember.computed.alias('$propName$'),&#10;" description="Computed property alias" toReformat="true" toShortenFQNames="true">
         <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
         <variable name="alias" expression="" defaultValue="" alwaysStopAt="true" />
         <context>
@@ -223,7 +223,7 @@
           <option name="OTHER" value="false" />
         </context>
     </template>
-    <template name="eoc" value="Ember.Object.create({&#10;    init: function() {&#10;    $END$&#10;}    &#10;});" description="Create Ember Object" toReformat="true" toShortenFQNames="true">
+    <template name="emoc" value="Ember.Object.create({&#10;    init: function() {&#10;    $END$&#10;}    &#10;});" description="Create Ember Object" toReformat="true" toShortenFQNames="true">
         <context>
             <option name="HTML_TEXT" value="false" />
             <option name="HTML" value="false" />
@@ -239,7 +239,25 @@
             <option name="OTHER" value="false" />
         </context>
     </template>
-    <template name="eap" value="Ember.ArrayProxy.create({&#10; content: $END$&#10;});" description="Create Ember Array Proxy" toReformat="true" toShortenFQNames="true">
+    <template name="emmi" value="Ember.Mixin.create({&#10;    $END$&#10;})" description="Create Ember Mixin" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="true" />
+            <option name="COFFEE_SCRIPT" value="false" />
+            <option name="LIVE_SCRIPT" value="false" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emap" value="Ember.ArrayProxy.create({&#10; content: $END$&#10;});" description="Create Ember Array Proxy" toReformat="true" toShortenFQNames="true">
         <context>
             <option name="HTML_TEXT" value="false" />
             <option name="HTML" value="false" />
@@ -255,7 +273,7 @@
             <option name="CSS_RULESET_LIST" value="false" />
         </context>
     </template>
-    <template name="ema" value="Ember.MutableArray.create({&#10; $END$&#10;});" description="Create Ember Mutable Array" toReformat="true" toShortenFQNames="true">
+    <template name="emma" value="Ember.MutableArray.create({&#10; $END$&#10;});" description="Create Ember Mutable Array" toReformat="true" toShortenFQNames="true">
         <context>
             <option name="HTML_TEXT" value="false" />
             <option name="HTML" value="false" />
@@ -287,7 +305,7 @@
             <option name="CSS_RULESET_LIST" value="false" />
         </context>
     </template>
-    <template name="emns" value="Ember.Namespace.create{&#10;  $END$&#10;});" description="A factory in a module" toReformat="true" toShortenFQNames="true">
+    <template name="emns" value="Ember.Namespace.create({&#10;  $END$&#10;});" description="A factory in a module" toReformat="true" toShortenFQNames="true">
         <variable name="factoryName" expression="" defaultValue="" alwaysStopAt="true" />
         <variable name="dependencies" expression="" defaultValue="" alwaysStopAt="true" />
         <context>

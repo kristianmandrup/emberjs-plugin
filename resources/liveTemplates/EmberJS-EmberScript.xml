@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templateSet group="EmberJS">
+    <template name="com" value="+computed $propName$" description="A computed property" toReformat="true" toShortenFQNames="true">
+        <variable name="property" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="false" />
+            <option name="EMBER_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="obs" value="+observer $propName$" description="Observer property" toReformat="true" toShortenFQNames="true">
+        <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="false" />
+            <option name="EMBER_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="vol" value="+volatile $propName$" description="Volatile property" toReformat="true" toShortenFQNames="true">
+      <variable name="propName" expression="" defaultValue="" alwaysStopAt="true" />
+      <context>
+          <option name="HTML_TEXT" value="false" />
+          <option name="HTML" value="false" />
+          <option name="XSL_TEXT" value="false" />
+          <option name="XML" value="false" />
+          <option name="CSS" value="false" />
+          <option name="JAVA_SCRIPT" value="false" />
+          <option name="EMBER_SCRIPT" value="true" />
+          <option name="JSP" value="false" />
+          <option name="HAML" value="false" />
+          <option name="OTHER" value="false" />
+          <option name="CSS_PROPERTY_VALUE" value="false" />
+          <option name="CSS_DECLARATION_BLOCK" value="false" />
+          <option name="CSS_RULESET_LIST" value="false" />
+      </context>
+    </template>
+
+    <template name="emoc" value="class $className$&#10;    init: ->&#10;    $END$&#10;    &#10;" description="Create Ember Object" toReformat="true" toShortenFQNames="true">
+        <variable name="className" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="false" />
+            <option name="EMBER_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+    <template name="emmi" value="mixin $mixinName$" description="Create Ember Mixin" toReformat="true" toShortenFQNames="true">
+        <variable name="mixinName" expression="" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="HTML_TEXT" value="false" />
+            <option name="HTML" value="false" />
+            <option name="XSL_TEXT" value="false" />
+            <option name="XML" value="false" />
+            <option name="CSS" value="false" />
+            <option name="JAVA_SCRIPT" value="false" />
+            <option name="EMBER_SCRIPT" value="true" />
+            <option name="JSP" value="false" />
+            <option name="HAML" value="false" />
+            <option name="OTHER" value="false" />
+            <option name="CSS_PROPERTY_VALUE" value="false" />
+            <option name="CSS_DECLARATION_BLOCK" value="false" />
+            <option name="CSS_RULESET_LIST" value="false" />
+        </context>
+    </template>
+
+</templateSet>

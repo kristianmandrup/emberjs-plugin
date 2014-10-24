@@ -60,23 +60,29 @@ public class GotoEmberAction extends GotoActionBase {
         getTemplatePresentation().setText(IdeBundle.message("goto.inspection.action.text"));
     }
 
+    private String capitalize(String line)
+    {
+      return Character.toUpperCase(line.charAt(0)) + line.substring(1);
+    }
+
     // Find anything which matches a pattern like:
     // CommentsRoute = Ember.Route.create({...})
     // The name such as CommentsRoute will be in the first matching group $1
     private void findEmberClass(findModel, String thing) {
-      return "(\\S+)\\s*=\\s*Ember\\." + thing + "\\.(create|extend)";
+
+      return "(\\S+)" + capitalize(thing) + "\\s*=\\s*Ember\\." + thing + "\\.(create|extend)";
     }
 
     private void findModuleFor(findModel, String thing) {
-      return "moduleFor\('" + thing + ":(\\S+)'";
+      return "moduleFor\\('" + thing + ":(\\S+)";
     }
 
     private void findModuleForComponent(findModel) {
-      return "moduleForComponent(\\S+";
+      return "moduleForComponent\\('(\\S+)";
     }
 
     private void findModuleForModel(findModel) {
-      return "moduleForModel(\\S+";
+      return "moduleForModel\\('(\\S+)";
     }
 
     private FindModel findReplaceEmberClass(findModel, String thing) {
@@ -158,7 +164,7 @@ public class GotoEmberAction extends GotoActionBase {
 
         // moduleFor('controller:posts',
         // TODO: Refactor this! Use some kind of Map instead and do iteration
-        // TODO: Perhaps refactor typeId to be TEST_COMPONENT etc.        
+        // TODO: Perhaps refactor typeId to be TEST_COMPONENT etc.
         findResultsModuleFor(validResults, findModel, "component", COMPONENT);
         findResultsModuleFor(validResults, findModel, "controller", CONTROLLER);
         findResultsModuleFor(validResults, findModel, "route", ROUTE);

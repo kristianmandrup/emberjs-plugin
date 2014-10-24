@@ -9,7 +9,11 @@ import org.jetbrains.annotations.Nullable;
 public class EmberJSTemplatesProvider implements DefaultLiveTemplatesProvider {
     @Override
     public String[] getDefaultLiveTemplateFiles() {
-        return new String[] {"liveTemplates/EmberJS"};
+        return new String[] {
+            "liveTemplates/EmberJS",
+            "liveTemplates/EmberJS-CoffeeScript", 
+            "liveTemplates/EmberJS-EmberScript"
+        };
     }
 
     @Nullable
