@@ -54,10 +54,77 @@ public class GotoEmberAction extends GotoActionBase {
     private static final int ROUTE = 2;
     private static final int MODEL = 3;
     private static final int VIEW = 4;
+    private static final int MIXIN = 5;
 
     public GotoEmberAction() {
         getTemplatePresentation().setText(IdeBundle.message("goto.inspection.action.text"));
     }
+
+    // Find anything which matches a pattern like:
+    // CommentsRoute = Ember.Route.create({...})
+    // The name such as CommentsRoute will be in the first matching group $1
+    private void findEmberClass(findModel, String thing) {
+      return "(\\S+)\\s*=\\s*Ember\\." + thing + "\\.(create|extend)";
+    }
+
+    private void findModuleFor(findModel, String thing) {
+      return "moduleFor\('" + thing + ":(\\S+)'";
+    }
+
+    private void findModuleForComponent(findModel) {
+      return "moduleForComponent(\\S+";
+    }
+
+    private void findModuleForModel(findModel) {
+      return "moduleForModel(\\S+";
+    }
+
+    private FindModel findReplaceEmberClass(findModel, String thing) {
+      findModel.setStringToFind(findEmberClass(thing));
+      findModel.setStringToReplace("$1");
+      return findModel;
+    }
+
+    private FindModel findReplaceModuleFor(findModel, String thing) {
+      findModel.setStringToFind(findModuleFor(thing));
+      findModel.setStringToReplace("$1");
+      return findModel;
+    }
+
+    private FindModel findReplaceModuleForComponent(findModel, String thing) {
+      findModel.setStringToFind(findModuleForComponent(thing));
+      findModel.setStringToReplace("$1");
+      return findModel;
+    }
+
+    private FindModel findReplaceModuleForModel(findModel, String thing) {
+      findModel.setStringToFind(findModuleForModel(thing));
+      findModel.setStringToReplace("$1");
+      return findModel;
+    }
+
+    private void findResultsForEmberClass(validResults, findModel, typeName, typeId) {
+      addResultsFor(findReplaceEmberClass(findModel, typeName), typeId);
+    }
+
+    private void findResultsModuleFor(validResults, findModel, typeName, typeId) {
+      addResultsFor(findReplaceModuleFor(findModel, typeName), typeId);
+    }
+
+    private void findResultsModuleForComponent(validResults, findModel, typeName, typeId) {
+      addResultsFor(findReplaceModuleForComponent(findModel, typeName), typeId);
+    }
+
+    private void findResultsModuleForModel(validResults, findModel, typeName, typeId) {
+      addResultsFor(findReplaceModuleForModel(findModel, typeName), typeId);
+    }
+
+    private void addResultsFor(findModel, typeId) {
+      final Collection<Usage> usages = getEmberUsages(project, dataContext, findModel);
+      List<EmberItem> usageResults = getValidResults(project, findModel, usages, typeId);
+      validResults.addAll(usageResults);
+    }
+
 
     @Override
     protected void gotoActionPerformed(final AnActionEvent e) {
@@ -77,41 +144,32 @@ public class GotoEmberAction extends GotoActionBase {
         findModel.setRegularExpressions(true);
         findModel.setFileFilter("*.js");
 
-        findModel.setStringToFind("Ember\\.Component");
-        findModel.setStringToReplace("$0");
-        final Collection<Usage> moduleMethodUsages = getEmberUsages(project, dataContext, findModel);
-        List<EmberItem> moduleMethodResults = getValidResults(project, findModel, moduleMethodUsages, COMPONENT);
-        validResults.addAll(moduleMethodResults);
+        // TODO: Refactor this! Use some kind of Map instead and do iteration
+        findResultsForEmberClass(validResults, findModel, "Component", COMPONENT);
+        findResultsForEmberClass(validResults, findModel, "Controller", CONTROLLER);
+        findResultsForEmberClass(validResults, findModel, "Route", ROUTE);
+        findResultsForEmberClass(validResults, findModel, "Model", MODEL);
+        findResultsForEmberClass(validResults, findModel, "View", VIEW);
+        findResultsForEmberClass(validResults, findModel, "Mixin", MIXIN);
 
-        findModel.setStringToFind("Ember\\.Controller");
-        findModel.setStringToReplace("$0");
-        final Collection<Usage> moduleMethodUsages = getEmberUsages(project, dataContext, findModel);
-        List<EmberItem> moduleMethodResults = getValidResults(project, findModel, moduleMethodUsages, CONTROLLER);
-        validResults.addAll(moduleMethodResults);
+        // Unit Testing
+        // http://emberjs.com/guides/testing/unit-test-helpers/
+        // http://emberjs.com/guides/testing/testing-components/
 
-        findModel.setStringToFind("Ember\\.Route");
-        findModel.setStringToReplace("$0");
-        final Collection<Usage> moduleMethodUsages = getEmberUsages(project, dataContext, findModel);
-        List<EmberItem> moduleMethodResults = getValidResults(project, findModel, moduleMethodUsages, CONTROLLER);
-        validResults.addAll(moduleMethodResults);
+        // moduleFor('controller:posts',
+        // TODO: Refactor this! Use some kind of Map instead and do iteration
+        // TODO: Perhaps refactor typeId to be TEST_COMPONENT etc.        
+        findResultsModuleFor(validResults, findModel, "component", COMPONENT);
+        findResultsModuleFor(validResults, findModel, "controller", CONTROLLER);
+        findResultsModuleFor(validResults, findModel, "route", ROUTE);
+        findResultsModuleFor(validResults, findModel, "model", MODEL);
+        findResultsModuleFor(validResults, findModel, "view", VIEW);
+        findResultsModuleFor(validResults, findModel, "mixin", MIXIN);
 
-        findModel.setStringToFind("Ember\\.Model");
-        findModel.setStringToReplace("$0");
-        final Collection<Usage> moduleMethodUsages = getEmberUsages(project, dataContext, findModel);
-        List<EmberItem> moduleMethodResults = getValidResults(project, findModel, moduleMethodUsages, CONTROLLER);
-        validResults.addAll(moduleMethodResults);
-
-        findModel.setStringToFind("Ember\\.View");
-        findModel.setStringToReplace("$0");
-        final Collection<Usage> moduleMethodUsages = getEmberUsages(project, dataContext, findModel);
-        List<EmberItem> moduleMethodResults = getValidResults(project, findModel, moduleMethodUsages, CONTROLLER);
-        validResults.addAll(moduleMethodResults);
-
-        findModel.setStringToFind("Ember\\.Mixin");
-        findModel.setStringToReplace("$0");
-        final Collection<Usage> moduleMethodUsages = getEmberUsages(project, dataContext, findModel);
-        List<EmberItem> moduleMethodResults = getValidResults(project, findModel, moduleMethodUsages, CONTROLLER);
-        validResults.addAll(moduleMethodResults);
+        // moduleForComponent(name,
+        findResultsModuleForComponent(validResults, findModel, COMPONENT);
+        // moduleForModel(name
+        findResultsModuleForModel(validResults, findModel, MODEL);
 
         final GotoEmberModel model = new GotoEmberModel(project, validResults);
         showNavigationPopup(e, model, new GotoEmberBase.GotoActionCallback<Object>() {
@@ -164,6 +222,7 @@ public class GotoEmberAction extends GotoActionBase {
                                 String elementText = element.getText();
                                 System.out.println(elementText + ": " + regExMatch + " - " + s);
 
+                                // TODO: Refactor this! Use some kind of Map instead!
                                 switch (type) {
                                     case COMPONENT:
                                         validResults.add(new EmberItem(s, elementText, result, element, "component"));
@@ -176,7 +235,6 @@ public class GotoEmberAction extends GotoActionBase {
                                     case ROUTE:
                                         validResults.add(new EmberItem(s, elementText, result, element, "route"));
                                         break;
-
 
                                     case MODEL:
                                         validResults.add(new EmberItem(s, elementText, result, element, "model"));

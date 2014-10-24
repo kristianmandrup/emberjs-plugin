@@ -35,8 +35,8 @@ public class GotoEmberModel extends SimpleChooseByNameModel{
     @Override
     public String[] getNames() {
         List<String> strings = new ArrayList<String>();
-        for (EmberItem EmberItem : emberItems) {
-            strings.add(EmberItem.getKey());
+        for (EmberItem emberItem : emberItems) {
+            strings.add(emberItem.getKey());
         }
 
         return ArrayUtil.toStringArray(strings);
@@ -45,9 +45,9 @@ public class GotoEmberModel extends SimpleChooseByNameModel{
     //list provided to the item renderer
     @Override
     protected Object[] getElementsByName(String name, String pattern) {
-        for (EmberItem EmberItem : emberItems) {
-            if (EmberItem.getKey().equals(name)) {
-                return new Object[]{EmberItem};
+        for (EmberItem emberItem : emberItems) {
+            if (emberItem.getKey().equals(name)) {
+                return new Object[]{emberItem};
             }
         }
 
