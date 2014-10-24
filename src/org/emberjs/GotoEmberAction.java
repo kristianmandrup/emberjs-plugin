@@ -42,7 +42,6 @@ import com.intellij.usages.UsageInfo2UsageAdapter;
 import com.intellij.util.AdapterProcessor;
 import com.intellij.util.CommonProcessors;
 import com.intellij.util.Processor;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -177,7 +176,7 @@ public class GotoEmberAction extends GotoActionBase {
         findResultsModuleForModel(project, dataContext, validResults, findModel, MODEL);
 
         final GotoEmberModel model = new GotoEmberModel(project, validResults);
-        showNavigationPopup(e, model, new GotoEmberBase.GotoActionCallback<Object>() {
+        showNavigationPopup(e, model, new GotoActionBase.GotoActionCallback<Object>() {
             @Override
             protected ChooseByNameFilter<Object> createFilter(@NotNull ChooseByNamePopup popup) {
                 popup.setSearchInAnyPlace(true);

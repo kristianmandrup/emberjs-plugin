@@ -197,8 +197,17 @@ On Windows the path is something like:
 
 `C:\\Program Files (x86)\JetBrains\IntelliJ IDEA Ultimate Edition 13.0.1`
 
-Now if configured correctly, (also make sure to enable the Javascript plugin), it should
-do code inspection and highlight any errors in red etc.
+Finally you need to add any extra plugin jars that are required (and used) for this plugin.
+
+In this case we need support for JavaScriptLanguage features, so we need the `JavaScriptLanguage.jar` in
+the class path. Possibly also `javascript-openapi` and `ecmascript6-compiler`.
+
+On Mac OSX:
+
+`/Applications/IntelliJ IDEA 13.app/Contents/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar`
+
+Now if the project is configured correctly, the IDE should code inspection and highlight
+any errors in red etc.
 
 Create a new *Run configuration*, using "+", and select "Plugin", then click "next".
 

@@ -6,11 +6,17 @@ import com.intellij.util.io.EnumeratorStringDescriptor;
 import com.intellij.util.io.KeyDescriptor;
 import gnu.trove.TObjectIntHashMap;
 import org.jetbrains.annotations.NotNull;
+import com.intellij.lang.javascript.index.*;
+import com.intellij.lang.javascript.*;
+import com.intellij.lang.javascript.index.JSEntryIndex;
+import com.intellij.lang.javascript.index.JSSymbolUtil;
 
 import java.util.Map;
 
 /**
  * Created by @kmandrup on 01/11/2014
+ * Needs major refactoring!!!
+ * See AngularJS plugin
  */
 public class EmberJSIndex extends FileBasedIndexExtension<String, TObjectIntHashMap<String>> {
     public static final ID<String, TObjectIntHashMap<String>> INDEX_ID = ID.create("ember.index");
