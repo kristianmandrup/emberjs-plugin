@@ -15,6 +15,8 @@ import org.jetbrains.annotations.Nullable;
             )}
 )
 public class EmberJSConfig implements PersistentStateComponent<EmberJSConfig> {
+    public boolean INSERT_WHITESPACE = false;
+
     public static EmberJSConfig getInstance() {
         return ServiceManager.getService(EmberJSConfig.class);
     }

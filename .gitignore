@@ -1,3 +1,5 @@
 out
 *.log
 .idea
+.DS_Store
+.idea
