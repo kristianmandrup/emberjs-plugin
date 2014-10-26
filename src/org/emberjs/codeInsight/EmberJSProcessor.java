@@ -56,7 +56,7 @@ public class EmberJSProcessor {
 
                     // handlebars {{#each alias as
                     @Override
-                    public void visitAngularJSAsExpression(EmberJSAsExpression asExpression) {
+                    public void visitEmberJSAsExpression(EmberJSAsExpression asExpression) {
                         final JSDefinitionExpression def = asExpression.getDefinition();
                         if (def != null && scopeMatches(original, asExpression)) {
                             consumer.consume(def);
@@ -65,13 +65,13 @@ public class EmberJSProcessor {
 
                     // handlebars {{#each
                     @Override
-                    public void visitAngularJSRepeatExpression(EmberJSRepeatExpression repeatExpression) {
+                    public void visitEmberJSRepeatExpression(EmberJSRepeatExpression repeatExpression) {
                         if (scopeMatches(original, repeatExpression)) {
                             for (Map.Entry<String, String> entry : NG_REPEAT_IMPLICITS.entrySet()) {
                                 consumer.consume(new ImplicitJSVariableImpl(entry.getKey(), entry.getValue(), repeatExpression));
                             }
                         }
-                        super.visitAngularJSRepeatExpression(repeatExpression);
+                        super.visitEmberJSRepeatExpression(repeatExpression);
                     }
 
                 });

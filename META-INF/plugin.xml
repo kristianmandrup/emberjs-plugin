@@ -30,6 +30,9 @@
             <keyboard-shortcut keymap="Mac OS X" first-keystroke="ctrl l"/>
             <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="ctrl l"/>
         </action>
+        <action id="NewEmberJSProject" class="NewEmberJSProject" text="New EmberJS Project">
+            <add-to-group group-id="NewGroup" anchor="last"/>
+        </action>
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">

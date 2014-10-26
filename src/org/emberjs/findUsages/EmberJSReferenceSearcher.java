@@ -6,6 +6,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.search.searches.ReferencesSearch;
 import com.intellij.util.Processor;
+import org.emberjs.codeInsight.ComponentUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -20,9 +21,9 @@ public class EmberJSReferenceSearcher extends QueryExecutorBase<PsiReference, Re
     @Override
     public void processQuery(@NotNull ReferencesSearch.SearchParameters queryParameters, @NotNull final Processor<PsiReference> consumer) {
         final PsiElement element = queryParameters.getElementToSearch();
-        final JSNamedElementProxy directive = null; // DirectiveUtil.getDirective(element);
-        if (directive == null) return;
+        final JSNamedElementProxy component = ComponentUtil.getComponent(element);
+        if (component == null) return;
 
-        queryParameters.getOptimizer().searchWord(directive.getName(), queryParameters.getEffectiveSearchScope(), true, directive);
+        queryParameters.getOptimizer().searchWord(component.getName(), queryParameters.getEffectiveSearchScope(), true, component);
     }
 }

@@ -31,15 +31,15 @@ public class EmberJSTagDescriptorsProvider implements XmlElementDescriptorProvid
         final Project project = xmlTag.getProject();
         ComponentUtil.processComponents(project, new Processor<JSNamedElementProxy>() {
             @Override
-            public boolean process(JSNamedElementProxy directive) {
-                addLookupItem(elements, directive);
+            public boolean process(JSNamedElementProxy component) {
+                addLookupItem(elements, component);
                 return true;
             }
         });
     }
 
-    private static void addLookupItem(List<LookupElement> elements, JSNamedElementProxy directive) {
-        elements.add(LookupElementBuilder.create(directive).withInsertHandler(XmlTagInsertHandler.INSTANCE));
+    private static void addLookupItem(List<LookupElement> elements, JSNamedElementProxy component) {
+        elements.add(LookupElementBuilder.create(component).withInsertHandler(XmlTagInsertHandler.INSTANCE));
     }
 
     @Nullable
@@ -47,7 +47,7 @@ public class EmberJSTagDescriptorsProvider implements XmlElementDescriptorProvid
     public XmlElementDescriptor getDescriptor(XmlTag xmlTag) {
         if (!(xmlTag instanceof HtmlTag && EmberIndexUtil.hasEmberJS(xmlTag.getProject()))) return null;
 
-        final String directiveName = ComponentUtil.getAttributeName(xmlTag.getName());
+        final String componentName = ComponentUtil.getAttributeName(xmlTag.getName());
         final XmlNSDescriptor nsDescriptor = xmlTag.getNSDescriptor(xmlTag.getNamespace(), false);
         final XmlElementDescriptor descriptor = nsDescriptor != null ? nsDescriptor.getElementDescriptor(xmlTag) : null;
         if (descriptor != null && !(descriptor instanceof AnyXmlElementDescriptor)) {
@@ -55,8 +55,8 @@ public class EmberJSTagDescriptorsProvider implements XmlElementDescriptorProvid
         }
 
         final Project project = xmlTag.getProject();
-        final JSNamedElementProxy directive = ComponentUtil.getComponentProxy(directiveName, project);
+        final JSNamedElementProxy component = ComponentUtil.getComponentProxy(componentName, project);
 
-        return directive != null ? new EmberJSTagDescriptor(directiveName, directive) : null;
+        return component != null ? new EmberJSTagDescriptor(componentName, component) : null;
     }
 }

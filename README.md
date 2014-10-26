@@ -1,6 +1,77 @@
 # EmberJS IntelliJ plugin
 
-EmberJS Support for the Intellij Platform (WebStorm, PhpStorm, Rubymine, Intellij, etc)
+EmberJS Support for the Intellij Platform (WebStorm, PhpStorm, Rubymine, Intellij, etc).
+
+This is still very much a Work In Progress. Please help make this a great plugin!!!
+
+## Leveraging the AngularJS plugin infrastructure 
+
+Since 0.1, the plugin has been extended to leverage much of the angular plugin infrastructure and there is a surprising
+ amount of infrastructure that can be used for similar EmberJS functionality.  
+
+Other repos for inspiration (ie "stealing" code)
+
+https://bitbucket.org/sylvanaar2/lua-for-idea/src
+
+Requires Atlassian SourceTree to clone it:
+
+http://www.sourcetreeapp.com/download/
+https://confluence.atlassian.com/pages/viewpage.action?pageId=269981802
+https://confluence.atlassian.com/display/BBKB/abort%3A+certificate+for+bitbucket.org+has+unexpected+fingerprint
+
+Handlebars and Mustache
+https://github.com/dmarcotte/idea-handlebars
+
+Current structure:
+
+Almost everything is under the `org.emberjs` package namespace.
+
+### New EmberJS Project
+
+`project` will contain The New Project action that will run Ember CLI under the covers in order to create the project.
+Also see `NewEmberJSProject`. Not yet sure how to set this up correctly, so please help out.
+
+[IntelliJ API](http://grepcode.com/snapshot/repository.grepcode.com/java/ext/com.jetbrains/intellij-idea/13.0.0/)
+
+### Navigation
+
+`EmberGotoSymbolContributor` goes to the file for a given Ember Symbol.
+
+`EmberJSIndexingHandler` will find and index EmberJS entities such as Component, Controller, Model etc. 
+Each such entity has their own Index class such as `EmberComponentIndex`.
+ 
+`EmberJSTemplatesProvider` defines which Live Templates are made available. Each such template can be found under the `resources` src module,
+ and each template code snippet defined under which contexts it is available. There are templates defined for various scripting languages.
+
+`EmberJSDocumentationProvider` is meant to look up Documentation for an Ember class using the emberjs main documentation site.
+
+`EmberItem` is a utility class, mapped directly from `AngularItem` of the angular plugin.
+
+`EmberTemplateCacheIndex` is mapped directly from `AngularTemplateCacheIndex`. It is meant to find and cache any Ember handlebars templates defined inline 
+in HTML as `type="text/x-handlebars"`.
+
+`settings` is a package that contains Ember project configuration settings. We should here learn and reuse more from the Lua plugin.
+ 
+`EmberJSComponentRenameProcessor` is currently the only refactoring supported. It is meant to enable changing a component name 
+and then find all usages in templates and rename accordingly using Ember naming conventions (template component name is in lowercase with dashes). 
+
+`lang` package contains Ember language definitions. Here the main point of interest is the `lang.psi` package which will contain the main Ember "constructs" that
+ the plugin should recognize as "language equivalents" and treat in some special ways (for intentions, refactorings etc). 
+ Examples are: `Action` and various kinds of `Property`.
+
+ `intentions` package currently contains duplicate logic of `EmberJSDocumentationProvider`. We should instead provide more meaningful intentions. 
+ See Lua and other plugins for ideas/inspiration.
+
+`findUsages` package contains `EmberJSReferenceSearcher` which can be used to find indexed ember js references (I think?).
+Stolen from angulajs plugin...
+
+`editor` package is currently empty. Fill it up as needed ;)
+
+`codeInsight` is an important package for code insight help, such as completion suggestions etc. Would be really nice if 
+it could help out with properties, warning you if you attempt to get/set properties that are not defined in the current "scope".  
+
+It should/could perhaps also contain clever logic for handlebars, linking to components definition and a nice way to use handlebars `each` similar to `ng-repeat` for angular.
+
 
 ## Current features (0.1)
 
@@ -9,6 +80,8 @@ EmberJS Support for the Intellij Platform (WebStorm, PhpStorm, Rubymine, Intelli
 - JS Docs lookup
 
 ### Navigate to Ember code
+
+This code/logic is currently found in `GotoEmberAction.java`
 
 via `ctrl l`
 

@@ -88,7 +88,7 @@ public class EmberTemplateCacheIndex extends ScalarIndexExtension<String> {
                 @Override
                 public void visitXmlTag(XmlTag tag) {
                     // TODO: Fix to correct handlebars script type
-                    if (HtmlUtil.isScriptTag(tag) && "text/hb-template".equals(tag.getAttributeValue("type"))) {
+                    if (HtmlUtil.isScriptTag(tag) && "text/x-handlebars".equals(tag.getAttributeValue("type"))) {
                         final XmlAttribute id = tag.getAttribute("id");
                         if (id != null) {
                             processor.process(id);
