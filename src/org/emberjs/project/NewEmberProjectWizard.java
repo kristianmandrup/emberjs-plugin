@@ -50,8 +50,10 @@ public class NewEmberProjectWizard extends AbstractProjectWizard {
             // alternative!?
             // http://www.mkyong.com/java/how-to-execute-shell-command-from-java/
             Process p;
+            String name = project.getName();
+            String newProjectCliCommand = "ember new " + name;
             try {
-                p = Runtime.getRuntime().exec("ember new demo-proj");
+                p = Runtime.getRuntime().exec(newProjectCliCommand);
                 p.waitFor();
 
                 BufferedReader reader =
@@ -62,7 +64,7 @@ public class NewEmberProjectWizard extends AbstractProjectWizard {
                     // We need a "hook" in ember cli console output so we can determine if installation went well
                     // Then we could do a regexp match on each line received from console to determine
                     // if/when project has has been successfully created!!
-                    if (line == "done");
+                    if (line == "ember cli project created successfully.");
                         done = true;
                 }
             } catch (Exception e) {
