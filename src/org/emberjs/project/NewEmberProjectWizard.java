@@ -1,10 +1,8 @@
 package org.emberjs.project;
 
 import com.intellij.ide.IdeBundle;
-import com.intellij.ide.projectWizard.ProjectSettingsStep;
 import com.intellij.ide.util.newProjectWizard.AbstractProjectWizard;
 import com.intellij.ide.util.newProjectWizard.StepSequence;
-import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
@@ -23,6 +21,9 @@ public class NewEmberProjectWizard extends AbstractProjectWizard {
 
     private final StepSequence mySequence = new StepSequence();
 
+    private final String PROJECT_CREATED_SUCCESS = "ember cli project created successfully.";
+    private final String COMMAND_NOT_FOUND = "command not found";
+
     // based roughly on the Java new project wizard!!
 
     public NewEmberProjectWizard(@Nullable Project project, @NotNull ModulesProvider modulesProvider, @Nullable String defaultPath) {
@@ -38,44 +39,64 @@ public class NewEmberProjectWizard extends AbstractProjectWizard {
     protected void init(@NotNull Project project, @NotNull ModulesProvider modulesProvider) {
         WizardContext myWizardContext = new WizardContext(project);
         myWizardContext.setNewWizard(true);
-        ProjectSettingsStep settingsStep = new ProjectSettingsStep(myWizardContext);
-        mySequence.addCommonFinishingStep(settingsStep, null);
-        for (ModuleWizardStep step : mySequence.getAllSteps()) {
-            addStep(step);
-        }
-        boolean done = false;
+
+        // TODO: Would be nice if we could have a setting step open a Dialog to ask for project options!!
+//        ProjectSettingsStep settingsStep = new ProjectSettingsStep(myWizardContext);
+//        mySequence.addCommonFinishingStep(settingsStep, null);
+//        for (ModuleWizardStep step : mySequence.getAllSteps()) {
+//            addStep(step);
+//        }
 
         if (myWizardContext.isCreatingNewProject()) {
-
-            // alternative!?
-            // http://www.mkyong.com/java/how-to-execute-shell-command-from-java/
-            Process p;
-            String name = project.getName();
-            String newProjectCliCommand = "ember new " + name;
-            try {
-                p = Runtime.getRuntime().exec(newProjectCliCommand);
-                p.waitFor();
-
-                BufferedReader reader =
-                        new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-                String line = "";
-                while ((line = reader.readLine())!= null) {
-                    // We need a "hook" in ember cli console output so we can determine if installation went well
-                    // Then we could do a regexp match on each line received from console to determine
-                    // if/when project has has been successfully created!!
-                    if (line == "ember cli project created successfully.");
-                        done = true;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (done) {
-                System.out.println("Ember project created successfully :)");
-            }
+            createNewProject(project);
         }
         // here or?
         super.init();
+    }
+
+    private void createNewProject(Project project) {
+        boolean done = false;
+        Process p;
+        String name = project.getName();
+        String newProjectCliCommand = "ember new " + name;
+        try {
+            p = Runtime.getRuntime().exec(newProjectCliCommand);
+            p.waitFor();
+
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            String line = "";
+            while ((line = reader.readLine())!= null) {
+                // We need a "hook" in ember cli console output so we can determine if installation went well
+                // Then we could do a regexp match on each line received from console to determine
+                // if/when project has has been successfully created!!
+                if (line.matches(PROJECT_CREATED_SUCCESS)) {
+                    done = true;
+                }
+                if (line.matches(COMMAND_NOT_FOUND)) {
+                    installEmberCLI();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (done) {
+            System.out.println("Ember project created successfully :)");
+        } else {
+
+        }
+    }
+
+    private void installEmberCLI() {
+        Process p;
+        String installEmberCLICommand = "npm install -g ember-cli";
+        try {
+            p = Runtime.getRuntime().exec(installEmberCLICommand);
+            p.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
