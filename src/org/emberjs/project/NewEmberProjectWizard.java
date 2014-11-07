@@ -1,11 +1,16 @@
 package org.emberjs.project;
 
+import com.intellij.execution.configurations.GeneralCommandLine;
+import com.intellij.execution.process.OSProcessHandler;
+import com.intellij.execution.process.ProcessEvent;
+import com.intellij.execution.process.ProcessListener;
 import com.intellij.ide.IdeBundle;
 import com.intellij.ide.util.newProjectWizard.AbstractProjectWizard;
 import com.intellij.ide.util.newProjectWizard.StepSequence;
 import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
+import com.intellij.openapi.util.Key;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +22,7 @@ import java.io.InputStreamReader;
  * Created by kristianmandrup on 26/10/14.
  * More to follow here... Should ask some questions and then run Ember CLI generator I guess!!!
  */
-public class NewEmberProjectWizard extends AbstractProjectWizard {
+public class NewEmberProjectWizard extends AbstractProjectWizard implements ProcessListener {
 
     private final StepSequence mySequence = new StepSequence();
 
@@ -89,16 +94,23 @@ public class NewEmberProjectWizard extends AbstractProjectWizard {
     }
 
     private void installEmberCLI() {
-        Process p;
-        String installEmberCLICommand = "npm install -g ember-cli";
+        final GeneralCommandLine generalCommandLine = new GeneralCommandLine("npm", "install","-g", "ember-cli");
+        generalCommandLine.setWorkDirectory(getNewProjectFilePath());
+
         try {
-            p = Runtime.getRuntime().exec(installEmberCLICommand);
-            p.waitFor();
+            final OSProcessHandler handler = new OSProcessHandler(generalCommandLine);
+            handler.addProcessListener(this);
+            handler.startNotify();
+            generalCommandLine.createProcess();
         } catch (Exception e) {
-            e.printStackTrace();
+            handleError(e);
         }
     }
 
+    @Nullable
+    protected void handleError(Exception e) {
+        System.err.println(e.getMessage());
+    }
 
     @Nullable
     @Override
@@ -109,5 +121,25 @@ public class NewEmberProjectWizard extends AbstractProjectWizard {
     @Override
     public StepSequence getSequence() {
         return mySequence;
+    }
+
+    @Override
+    public void startNotified(ProcessEvent processEvent) {
+
+    }
+
+    @Override
+    public void processTerminated(ProcessEvent processEvent) {
+
+    }
+
+    @Override
+    public void processWillTerminate(ProcessEvent processEvent, boolean b) {
+
+    }
+
+    @Override
+    public void onTextAvailable(ProcessEvent processEvent, Key key) {
+
     }
 }
