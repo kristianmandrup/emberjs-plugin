@@ -1,6 +1,8 @@
 EmberJS IntelliJ plugin
 =======================
 
+__WARNING:__ This project is obsolete. Checkout the new [intellij-emberjs](https://github.com/Turbo87/intellij-emberjs) project instead which implemented a lot of the same ideas and is based on the `ember-cli` conventions!
+
 EmberJS Support for the Intellij Platform (WebStorm, PhpStorm, Rubymine, Intellij, etc).
 
 This is still very much a Work In Progress. Please help make this a great plugin!!!
